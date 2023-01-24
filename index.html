@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Timed Quiz</title>
+</head>
+<body>
+    <header>
+        <div ID="timer">Time Left:<span ID="time-left"></span></div>
+        <div ID="score">Highscore:<span ID="scoreval"></span></div>
+        <h2 ID="title">Knowledge Check!</h2>
+    </header>
+    <!-- info box-->
+    <section ID="content-box" class="hide">
+        <ul ID="info-list">
+            <div class="info-title">
+                <span>Rules</span>
+            </div>
+            <li class="list">
+                1. You will have 60 seconds to complete the quiz.
+            </li>
+            <li class="list">
+                2. You can't select any option once the time reads 0.
+            </li>
+            <li class="list">
+                3. You'll receive points based on the amount of questions you answer correctly.
+            </li>
+        </ul>
+        <!--id=2b which means 2 buttons-->
+    <div ID="twob">
+        <button ID="restart">Continue</button>
+        </div>
+    </section>
+    <!-- start quiz button -->
+    <button ID="start-button">Start Quiz</button>
+    <!-- Quix Box -->
+    <div ID="question" class="hide">
+        Question:
+    </div>
+    <!-- buttons -->
+    <div ID="buttons" class="hide">   
+        <button ID="btn1" class="choices">Answer 1</button>
+        <button ID="btn2" class="choices">Answer 2</button>
+        <button ID="btn3" class="choices">Answer 3</button>
+        <button ID="btn4" class="choices">Answer 4</button>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
+

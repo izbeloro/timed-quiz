@@ -5,12 +5,13 @@ var timerVal;
 var isWin = false;
 var content = document.getElementById("content-box");
 var cont = document.getElementById("restart")
-var question = document.getElementById("question");
+var questionCont = document.getElementById("question");
 var buttonsDiv = document.getElementById("buttons");
 var btn1 = document.getElementById("btn1");
 var btn2 = document.getElementById("btn2");
 var btn3 = document.getElementById("btn3");
 var btn4 = document.getElementById("btn4");
+var currentQue;
 
 function startTimer() {
     timer = setInterval(function () {
@@ -43,8 +44,9 @@ function startGame() {
 }
 
 function showQuestion() {
-    question.classList.remove("hide")
+    questionCont.classList.remove("hide")
     buttonsDiv.classList.remove("hide")
+    renderQuestion0()
 }
 
 start.addEventListener("click", showRules)
@@ -69,20 +71,63 @@ var questions = [
     }
 ]
 
-function renderQuestion() {
-    
+function reduceTime() {
+    if (timerVal < 6) {
+        timerVal <= 0
+    }
+    else {
+        timerVal = timerVal - 5
+    }
+}
+
+function renderQuestion0(currentQue) {
+    currentQue = questions[0].title;
+    questionCont.innerText = currentQue;
+    btn1.innerText = questions[0].choices[0];
+    btn2.innerText = questions[0].choices[1];
+    btn3.innerText = questions[0].choices[2];
+    btn4.innerText = questions[0].choices[3];
+
+    btn1.addEventListener("click", reduceTime)
+    btn2.addEventListener("click", reduceTime)
+    btn3.addEventListener("click", renderQuestion1)
+    btn4.addEventListener("click", reduceTime)
+}
+
+function renderQuestion1(currentQue) {
+    currentQue = questions[0].title;
+    questionCont.innerText = currentQue;
+    btn1.innerText = questions[1].choices[0];
+    btn2.innerText = questions[1].choices[1];
+    btn3.innerText = questions[1].choices[2];
+    btn4.innerText = questions[1].choices[3];
+
+    btn1.addEventListener("click", reduceTime)
+    btn2.addEventListener("click", reduceTime)
+    btn3.addEventListener("click", reduceTime)
+    btn4.addEventListener("click", renderQuestion2)
+}
+
+function renderQuestion2(currentQue) {
+    currentQue = questions[0].title;
+    questionCont.innerText = currentQue;
+    btn1.innerText = questions[2].choices[0];
+    btn2.innerText = questions[2].choices[1];
+    btn3.innerText = questions[2].choices[2];
+    btn4.innerText = questions[2].choices[3];
+
+    btn1.addEventListener("click", reduceTime)
+    btn2.addEventListener("click", endGame)
+    btn3.addEventListener("click", reduceTime)
+    btn4.addEventListener("click", reduceTime)
+}
+
+function endGame() {
+    questionCont.innerText = "You Win!"
+}
+
+function loseGame() {
+    questionCont.innerText = "You Lose!"
 }
 
 
-// function renderQuestion(num) {
-//     var question = questions [ num - 1];
-
-//     questionEl.textcontect = question.question;
-
-//     for (let i = 0; i < question.answers.length; i++) {
-//         var choices = question.choices(i);
-
-//     }
-// }
-
-renderQuestion(1);

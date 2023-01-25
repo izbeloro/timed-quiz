@@ -13,6 +13,7 @@ var btn3 = document.getElementById("btn3");
 var btn4 = document.getElementById("btn4");
 var initials = document.getElementById("initials");
 var score = document.getElementById("Highscore");
+var submit =document.getElementById("submit");
 
 function startTimer() {
     timer = setInterval(function () {
@@ -137,11 +138,15 @@ function endGame() {
 function showForm() {
     initials.classList.remove("hide");
     score.classList.remove("hide");
+    questionCont.classList.add("hide");
+    buttonsDiv.classList.add("hide");
+    submit.classList.remove("hide");
 }
 
 
 function loseGame() {
     alert("You Lose!");
+    showForm();
 }
 
 

@@ -126,3 +126,23 @@ header {
 #option-list {
     list-style: none;
 }
+
+#initials,
+#Highscore {
+    margin: 0 0 0 45%;
+    font-size: 22px;
+}
+
+#submit {
+    background-color: var(--dark);
+    font-size: 20px;
+    margin-left: 50%;
+    margin-top: 2%;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px black;
+}
+
+#submit:hover {
+    background-color: rgb(44, 131, 44);
+}

@@ -140,7 +140,16 @@ function endGame() {
         }
         highScores.push(newScore);
         localStorage.setItem("highscores", JSON.stringify(highScores));
-        showScore.innerText = JSON.stringify(localStorage.getItem("highschores"));
+        highScores = JSON.stringify(highScores);
+        showScore.innerText = highScores;
+
+        for (var i = 0; i < highScores.length; i++) {
+            // create new div element here
+            
+            // append that div element to the showScore element here
+
+            // newdiv.innerText = highScores[i].newScore.userScore + ': ' + highScores[i].newScore.userInitals
+        }
         
     });
 }

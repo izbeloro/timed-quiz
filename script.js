@@ -11,7 +11,8 @@ var btn1 = document.getElementById("btn1");
 var btn2 = document.getElementById("btn2");
 var btn3 = document.getElementById("btn3");
 var btn4 = document.getElementById("btn4");
-var currentQue;
+var initials = document.getElementById("initials");
+var score = document.getElementById("Highscore");
 
 function startTimer() {
     timer = setInterval(function () {
@@ -31,27 +32,27 @@ function startTimer() {
 }
 
 function showRules() {
-    start.classList.add("hide")
-    content.classList.remove("hide")
+    start.classList.add("hide");
+    content.classList.remove("hide");
 }
 
 function startGame() {
-    content.classList.add("hide")
-    isWin = false
-    timerVal = 60
-    startTimer()
-    showQuestion()
+    content.classList.add("hide");
+    isWin = false;
+    timerVal = 60;
+    startTimer();
+    showQuestion();
 }
 
 function showQuestion() {
-    questionCont.classList.remove("hide")
-    buttonsDiv.classList.remove("hide")
-    renderQuestion0()
+    questionCont.classList.remove("hide");
+    buttonsDiv.classList.remove("hide");
+    renderQuestion();
 }
 
-start.addEventListener("click", showRules)
-cont.addEventListener("click", startGame)
-cont.addEventListener("click", showQuestion)
+start.addEventListener("click", showRules);
+cont.addEventListener("click", startGame);
+cont.addEventListener("click", showQuestion);
 
 var questions = [
     {
@@ -73,61 +74,74 @@ var questions = [
 
 function reduceTime() {
     if (timerVal < 6) {
-        timerVal <= 0
+        timerVal <= 0;
     }
     else {
-        timerVal = timerVal - 5
+        timerVal = timerVal - 5;
     }
 }
 
-function renderQuestion0(currentQue) {
-    currentQue = questions[0].title;
-    questionCont.innerText = currentQue;
-    btn1.innerText = questions[0].choices[0];
-    btn2.innerText = questions[0].choices[1];
-    btn3.innerText = questions[0].choices[2];
-    btn4.innerText = questions[0].choices[3];
+var currentQuestion = 0;
 
-    btn1.addEventListener("click", reduceTime)
-    btn2.addEventListener("click", reduceTime)
-    btn3.addEventListener("click", renderQuestion1)
-    btn4.addEventListener("click", reduceTime)
+function renderQuestion() {
+    questionCont.innerText = questions[currentQuestion].title;
+    btn1.innerText = questions[currentQuestion].choices[0];
+    btn2.innerText = questions[currentQuestion].choices[1];
+    btn3.innerText = questions[currentQuestion].choices[2];
+    btn4.innerText = questions[currentQuestion].choices[3];
+
+    btn1.value = questions[currentQuestion].choices[0];
+    btn2.value = questions[currentQuestion].choices[1];
+    btn3.value = questions[currentQuestion].choices[2];
+    btn4.value = questions[currentQuestion].choices[3];
+
+
+    btn1.addEventListener("click", checkAns);
+    btn2.addEventListener("click", checkAns);
+    btn3.addEventListener("click", checkAns);
+    btn4.addEventListener("click", checkAns);
 }
 
-function renderQuestion1(currentQue) {
-    currentQue = questions[0].title;
-    questionCont.innerText = currentQue;
-    btn1.innerText = questions[1].choices[0];
-    btn2.innerText = questions[1].choices[1];
-    btn3.innerText = questions[1].choices[2];
-    btn4.innerText = questions[1].choices[3];
-
-    btn1.addEventListener("click", reduceTime)
-    btn2.addEventListener("click", reduceTime)
-    btn3.addEventListener("click", reduceTime)
-    btn4.addEventListener("click", renderQuestion2)
-}
-
-function renderQuestion2(currentQue) {
-    currentQue = questions[0].title;
-    questionCont.innerText = currentQue;
-    btn1.innerText = questions[2].choices[0];
-    btn2.innerText = questions[2].choices[1];
-    btn3.innerText = questions[2].choices[2];
-    btn4.innerText = questions[2].choices[3];
-
-    btn1.addEventListener("click", reduceTime)
-    btn2.addEventListener("click", endGame)
-    btn3.addEventListener("click", reduceTime)
-    btn4.addEventListener("click", reduceTime)
+function checkAns(event) {
+    var selectedAns = event.target.getAttribute("value");
+    var answer = questions[currentQuestion].answer;
+    if (selectedAns === answer) {
+        alert("Correct answer!");
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            renderQuestion();
+        } else {
+            endGame();
+        }
+    }
+    else {
+        alert("Wrong answer!!!!!");
+        reduceTime();
+    }
 }
 
 function endGame() {
-    questionCont.innerText = "You Win!"
+    clearInterval(timer);
+    showForm();
 }
 
+// function renderHighscore() {
+//     localStorage.getItem("initals");
+//     localStorage.getItem("Highscore");
+
+//     if (!initials || !score) {
+//     return;
+//     }
+// }
+
+function showForm() {
+    initials.classList.remove("hide");
+    score.classList.remove("hide");
+}
+
+
 function loseGame() {
-    questionCont.innerText = "You Lose!"
+    alert("You Lose!");
 }
 
 

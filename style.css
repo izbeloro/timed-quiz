@@ -127,10 +127,11 @@ header {
     list-style: none;
 }
 
-#initials,
+#int,
 #Highscore {
     margin: 0 0 0 45%;
     font-size: 22px;
+    padding: 4px;
 }
 
 #submit {

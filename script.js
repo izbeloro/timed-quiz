@@ -11,9 +11,11 @@ var btn1 = document.getElementById("btn1");
 var btn2 = document.getElementById("btn2");
 var btn3 = document.getElementById("btn3");
 var btn4 = document.getElementById("btn4");
-var initials = document.getElementById("initials");
+var initials = document.getElementById("int");
 var score = document.getElementById("Highscore");
 var submit =document.getElementById("submit");
+var initialEl  = document.getElementById("initialsInput");
+var scoreEl = document.getElementById("scoreInput");
 
 function startTimer() {
     timer = setInterval(function () {
@@ -124,16 +126,21 @@ function checkAns(event) {
 function endGame() {
     clearInterval(timer);
     showForm();
+    submit.addEventListener("click", function() {
+        var userScore = scoreEl.value;
+        var userInitals = initialEl.value;
+
+        var highScores =
+        JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+        var newScore = {
+            score:  userScore,
+            initial: userInitals,
+        }
+        highScores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highScores));
+    });
 }
-
-// function renderHighscore() {
-//     localStorage.getItem("initals");
-//     localStorage.getItem("Highscore");
-
-//     if (!initials || !score) {
-//     return;
-//     }
-// }
 
 function showForm() {
     initials.classList.remove("hide");
@@ -143,6 +150,10 @@ function showForm() {
     submit.classList.remove("hide");
 }
 
+// function saveinfo() {
+//     var name = initials.value;
+//     localStorage
+// }
 
 function loseGame() {
     alert("You Lose!");

@@ -16,6 +16,7 @@ var score = document.getElementById("Highscore");
 var submit =document.getElementById("submit");
 var initialEl  = document.getElementById("initialsInput");
 var scoreEl = document.getElementById("scoreInput");
+var showScore = document.getElementById("showscore");
 
 function startTimer() {
     timer = setInterval(function () {
@@ -139,6 +140,7 @@ function endGame() {
         }
         highScores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highScores));
+        showScore.innerText = JSON.stringify(window.localStorage.getItem("highscores"));
     });
 }
 

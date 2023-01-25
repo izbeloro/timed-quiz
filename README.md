@@ -15,7 +15,7 @@ This webpage was created to present a timed quiz based on the acquired skills le
 
 ![ScreenShot](./assets/timedquiz.png)
 
-https://github.com/izbeloro/timed-quiz
+https://izbeloro.github.io/timed-quiz/
 
 
 ## Credits

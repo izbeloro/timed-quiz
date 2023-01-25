@@ -128,19 +128,20 @@ function endGame() {
     clearInterval(timer);
     showForm();
     submit.addEventListener("click", function() {
-        var userScore = scoreEl.value;
+        var userScore = scoreEl;
         var userInitals = initialEl.value;
 
         var highScores =
-        JSON.parse(window.localStorage.getItem("highscores")) || [];
+        JSON.parse(localStorage.getItem("highscores")) || [];
 
         var newScore = {
             score:  userScore,
             initial: userInitals,
         }
         highScores.push(newScore);
-        window.localStorage.setItem("highscores", JSON.stringify(highScores));
-        showScore.innerText = JSON.stringify(window.localStorage.getItem("highscores"));
+        localStorage.setItem("highscores", JSON.stringify(highScores));
+        showScore.innerText = JSON.stringify(localStorage.getItem("highschores"));
+        
     });
 }
 
@@ -150,12 +151,9 @@ function showForm() {
     questionCont.classList.add("hide");
     buttonsDiv.classList.add("hide");
     submit.classList.remove("hide");
+    scoreEl.value = timerVal;
 }
 
-// function saveinfo() {
-//     var name = initials.value;
-//     localStorage
-// }
 
 function loseGame() {
     alert("You Lose!");
